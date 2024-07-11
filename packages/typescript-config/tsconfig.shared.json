@@ -1,0 +1,20 @@
+{
+  "extends": "@repo/typescript-config/tsconfig.pathes.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
+  "compilerOptions": {
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": false,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true
+  }
+}

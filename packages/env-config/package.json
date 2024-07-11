@@ -1,0 +1,26 @@
+{
+  "name": "@repo/env-config",
+  "version": "0.0.1",
+  "description": "Env package to work with environment variables",
+  "type": "module",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "i": "npm install"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src/index.ts"
+  ],
+  "author": "",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "packageManager": "npm@10.2.3",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0"
+  }
+}

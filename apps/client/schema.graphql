@@ -1,0 +1,89 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthResponse {
+  access_token: String!
+  email: String!
+  id: String!
+  phoneNumber: String!
+  username: String!
+}
+
+input CreateDiscussionInput {
+  name: String!
+  users: [String!]!
+}
+
+input CreateMessageInput {
+  content: String!
+  discussionId: String!
+  userId: String!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  phoneNumber: String!
+  username: String!
+}
+
+type Discussion {
+  createdAt: String!
+  id: String!
+  messages: [Message!]
+  name: String!
+  updatedAt: String!
+  users: [User!]
+}
+
+type Message {
+  content: String!
+  createdAt: String!
+  discussion: Discussion!
+  id: String!
+  updatedAt: String!
+  user: User!
+}
+
+type Mutation {
+  createDiscussion(createDiscussionInput: CreateDiscussionInput!): Discussion!
+  createMessage(createMessageInput: CreateMessageInput!): Message!
+  createUser(createUserInput: CreateUserInput!): User!
+  login(email: String!, password: String!): AuthResponse!
+  register(registerUserInput: CreateUserInput!): User!
+  removeUser(id: String!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Query {
+  discussion: Discussion!
+  discussions: [Discussion!]!
+  discussionsByUser(id: String!): [Discussion!]!
+  messages: [Message!]!
+  messagesByDiscussionAsc(discussionId: String!): [Message!]!
+  user(id: String!): User!
+  users: [User!]!
+}
+
+type Subscription {
+  messageAdded(discussionId: String!): Message!
+}
+
+input UpdateUserInput {
+  email: String
+  id: String!
+  password: String
+  phoneNumber: String
+  username: String
+}
+
+type User {
+  discussions: [Discussion!]
+  email: String!
+  id: String!
+  messages: [Message!]
+  password: String!
+  phoneNumber: String!
+  username: String!
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@repo/prettier-config",
+  "version": "0.0.1",
+  "description": "Collection of internal prettier configurations.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "i": "npm install"
+  },
+  "files": [
+    "prettier.config.shared.cjs",
+    "prettier.config.client.cjs"
+  ],
+  "devDependencies": {
+    "prettier": "^3.3.2",
+    "prettier-plugin-svelte": "^3.1.2",
+    "prettier-plugin-tailwindcss": "^0.6.4"
+  },
+  "packageManager": "npm@10.2.3"
+}

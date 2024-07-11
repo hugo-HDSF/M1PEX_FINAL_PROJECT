@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@client/*": [
+        "apps/client/src/*"
+      ],
+      "@server/*": [
+        "apps/server/src/*"
+      ],
+      "#prisma/*": [
+        "packages/prisma/*"
+      ],
+      "#graphql/*": [
+        "packages/graphql/*"
+      ]
+    }
+  }
+}

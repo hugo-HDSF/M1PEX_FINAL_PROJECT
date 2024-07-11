@@ -1,0 +1,14 @@
+{
+  "extends": "@repo/typescript-config/tsconfig.shared.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "."
+  },
+  "include": [
+    "src"
+  ],
+  "ts-node": {
+    "esm": true
+  }
+}

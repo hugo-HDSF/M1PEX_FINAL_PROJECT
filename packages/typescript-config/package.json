@@ -1,0 +1,25 @@
+{
+  "name": "@repo/typescript-config",
+  "version": "0.0.1",
+  "description": "Typescript configuration package for the repository",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "i": "npm install"
+  },
+  "files": [
+    "tsconfig.client.json",
+    "tsconfig.pathes.json",
+    "tsconfig.server.json",
+    "tsconfig.shared.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "npm@10.2.3",
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "@types/node": "^20.14.5",
+    "ts-node": "^10.9.2"
+  }
+}

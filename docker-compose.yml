@@ -1,0 +1,81 @@
+networks:
+  m1pex-network:
+    driver: bridge
+
+services:
+  m1pex-postgres:
+    container_name: m1pex-postgres
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    working_dir: /app
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - m1pex-network
+
+  m1pex-server:
+    links:
+      - m1pex-postgres
+    depends_on:
+      - m1pex-postgres
+    container_name: m1pex-server
+    restart: unless-stopped
+    command: turbo dev --filter server
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    environment:
+      PORT: ${SERVER_PORT}
+      SERVER_PORT: ${SERVER_PORT}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_USER: ${DATABASE_USER}
+    working_dir: /app
+    build:
+      args:
+        APP: server
+        PACKAGE: server
+      dockerfile: ./docker/server.dockerfile
+    volumes:
+      - ./apps/server:/app/apps/server
+      - ./node_modules:/app/apps/server/node_modules
+    networks:
+      - m1pex-network
+
+  m1pex-client:
+    links:
+      - m1pex-server
+    depends_on:
+      - m1pex-postgres
+      - m1pex-server
+    container_name: m1pex-client
+    restart: unless-stopped
+    command: turbo dev --filter client
+    ports:
+      - ${CLIENT_PORT}:${CLIENT_PORT}
+    environment:
+      PORT: ${CLIENT_PORT}
+      CLIENT_PORT: ${CLIENT_PORT}
+    working_dir: /app
+    build:
+      args:
+        APP: client
+        PACKAGE: client
+      dockerfile: ./docker/client.dockerfile
+    volumes:
+      - ./apps/client:/app/apps/client
+      - ./node_modules:/app/apps/client/node_modules
+    networks:
+      - m1pex-network
+
+  m1pex-redis:
+    image: redis:latest
+    container_name: m1pex-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - m1pex-network
